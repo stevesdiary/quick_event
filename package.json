@@ -1,0 +1,26 @@
+{
+  "name": "quick-event",
+  "version": "1.0.0",
+  "description": "Quick event service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevesdiary/quick_event.git"
+  },
+  "keywords": [
+    "Node",
+    "js",
+    "Mysql",
+    "Typescript",
+    "typeORM"
+  ],
+  "author": "Stephen Oyeyemi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevesdiary/quick_event/issues"
+  },
+  "homepage": "https://github.com/stevesdiary/quick_event#readme"
+}
