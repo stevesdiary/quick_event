@@ -8,7 +8,12 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon --watch src --exec 'ts-node' src/index.ts"
+    "dev": "nodemon --watch src --exec 'ts-node' src/index.ts",
+    "typeorm": "typeorm-ts-node-commonjs -d src/database/data-source.ts",
+    "migration:show": "yarn typeorm migration:show",
+    "migration:create": "node scripts/migration-create.js",
+    "migration:run": "yarn typeorm migration:run",
+    "migration:revert": "yarn typeorm migration:revert"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.423.0",
@@ -42,6 +47,7 @@
     "uuid": "^9.0.1"
   },
   "dependencies": {
+    "mysql": "^2.18.1",
     "yarn": "^1.22.19"
   }
 }
