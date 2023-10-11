@@ -11,4 +11,16 @@ export class EventsController {
          data: events,
       })
    }
+
+   async getEvent(req: Request, res: Response) {
+      const { id } = req.params;
+      const event = await AppDataSource.getRepository(Event).findOneByOrFail({
+         id: Number(id),
+      });
+      return res.status(200).json({
+         success: true,
+         message: "Fethced event successfully",
+         data: event,
+      })
+   }
 }
