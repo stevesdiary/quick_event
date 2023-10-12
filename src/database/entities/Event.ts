@@ -1,12 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { EVENTS } from "../../constants/DBTable";
-import { UUID } from "crypto";
 
 @Entity(EVENTS)
 
 export class Event {
-   @PrimaryGeneratedColumn()
-   id: number;
+   @PrimaryGeneratedColumn("uuid")
+   id: string;
 
    @Column({ nullable: false })
    category_id: string;

@@ -10,11 +10,11 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
-                        generationStrategy: "increment",
+                        generationStrategy: "uuid",
                         isNullable: false,
-                        default: true
+                        // default: "uuidv4()"
                     },
                     {
                         name: "category_id",
@@ -61,8 +61,7 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
                     },
                     {
                         name: "time",
-                        type: "varchar",
-                        length: "20",
+                        type: "time",
                         isNullable: true
                     },
                     {
@@ -86,19 +85,19 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
                     {
                         name: "instagram",
                         type: "varchar",
-                        length: "20",
+                        length: "30",
                         isNullable: true
                     },
                     {
                         name: "facebook",
                         type: "varchar",
-                        length: "20",
+                        length: "30",
                         isNullable: true
                     },
                     {
                         name: "twitter",
                         type: "varchar",
-                        length: "20",
+                        length: "30",
                         isNullable: true
                     },
                     {
