@@ -5,7 +5,7 @@ import { EVENTS } from "../../constants/DBTable";
 
 export class Event {
    @PrimaryGeneratedColumn("uuid")
-   id: string;
+   event_id: string;
 
    @Column({ nullable: false })
    category_id: string;

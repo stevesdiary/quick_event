@@ -9,12 +9,13 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
                 name: EVENTS,
                 columns: [
                     {
-                        name: "id",
+                        name: "event_id",
                         type: "varchar",
                         isPrimary: true,
+                        isGenerated: true,
                         generationStrategy: "uuid",
                         isNullable: false,
-                        // default: "uuidv4()"
+                        // default: "uuid()"
                     },
                     {
                         name: "category_id",
@@ -28,17 +29,17 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
                     },
                     {
                         name: "merchant_id",
-                        type: "char(36)",
+                        type: "varchar(36)",
                         isNullable: false
                     },
                     {
                         name: "banner",
-                        type: "char(200)",
+                        type: "varchar(200)",
                         isNullable: true
                     },
                     {
                         name: "description",
-                        type: "char(100)",
+                        type: "varchar(100)",
                         isNullable: true
                     },
                     {
@@ -62,7 +63,7 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
                     {
                         name: "time",
                         type: "time",
-                        isNullable: true
+                        isNullable: false
                     },
                     {
                         name: "event_type",
@@ -128,35 +129,37 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
                     {
                         name: "sell",
                         type: "tinyint",
-                        isNullable: true
+                        isNullable: false
                     },
                     {
                         name: "payment_status",
                         type: "varchar",
                         length: "20",
-                        isNullable: true,
+                        isNullable: false,
                     },
                     {
                         name: "service_charge",
                         type: "varchar",
                         length: "20",
-                        isNullable: true,
+                        isNullable: false,
                     },
                     {
                         name: "service_fee",
                         type: "varchar",
                         length: "10",
-                        isNullable: true
+                        isNullable: false,
+                        default: process.env.SERVICE_FEE
                     },
                     {
                         name: "multi_day",
                         type: "tinyint",
-                        isNullable: true
+                        isNullable: true,
+                        default: 1
                     },
                     {
                         name: "status",
                         type: "tinyint",
-                        isNullable: true
+                        isNullable: false
                     },  
                     {
                         name: "createdAt",

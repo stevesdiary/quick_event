@@ -12,7 +12,7 @@ export class EventsController {
    async getEvent(req: Request, res: Response) {
       const { id } = req.params;
       const event = await AppDataSource.getRepository(Event).findOneByOrFail({
-         id: String(id),
+         event_id: String(id),
       });
       return ResponseUtl.sendResponse<Event>(res, "Fetched event successfully", event, null)
 
