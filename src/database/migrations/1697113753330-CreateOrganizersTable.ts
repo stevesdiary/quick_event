@@ -16,6 +16,11 @@ export class CreateOrganizersTable1697113753330 implements MigrationInterface {
                         generationStrategy: "uuid",
                     },
                     {
+                        name: "merchant_id",
+                        type: "varchar(36)",
+                        isNullable: false,
+                    },
+                    {
                         name: "organizer_name",
                         type: "varchar(36)",
                         isNullable: false,
