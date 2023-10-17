@@ -13,7 +13,8 @@
     "migration:show": "yarn typeorm migration:show",
     "migration:create": "node scripts/migration-create.js",
     "migration:run": "yarn typeorm migration:run",
-    "migration:revert": "yarn typeorm migration:revert"
+    "migration:revert": "yarn typeorm migration:revert",
+    "migration:rollback": "yarn typeorm migration:rollback"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.423.0",

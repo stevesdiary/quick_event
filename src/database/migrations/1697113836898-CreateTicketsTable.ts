@@ -33,7 +33,7 @@ export class CreateTicketsTable1697113836898 implements MigrationInterface {
                     {
                         name: "merchant_id",
                         type: "varchar(36)",
-                        isNullable: false
+                        isNullable: true
                     },
                     {
                         name: "code",
@@ -97,7 +97,7 @@ export class CreateTicketsTable1697113836898 implements MigrationInterface {
                     },
                     {
                         name: "merchant_funded",
-                        type: "tinyint",
+                        type: "bool",
                         isNullable: false
                     },
                 ]

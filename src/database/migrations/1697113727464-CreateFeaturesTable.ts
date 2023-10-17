@@ -24,7 +24,7 @@ export class CreateFeaturesTable1697113727464 implements MigrationInterface {
                     },
                     {
                         name: "tag",
-                        type: "varchar(20))",
+                        type: "varchar(20)",
                         isNullable: false,
                     },
                     {
@@ -34,12 +34,12 @@ export class CreateFeaturesTable1697113727464 implements MigrationInterface {
                     },
                     {
                         name: "percentage",
-                        type: "tinyint",
+                        type: "int",
                         isNullable: false
                     },
                     {
                         name: "limit",
-                        type: "tinyint",
+                        type: "int",
                         isNullable: false
                     },
                     {
@@ -73,7 +73,7 @@ export class CreateFeaturesTable1697113727464 implements MigrationInterface {
                 ]
             }),
             true
-        )
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

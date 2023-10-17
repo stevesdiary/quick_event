@@ -28,7 +28,7 @@ export class CreateLikesTable1697113818348 implements MigrationInterface {
                     },
                     {
                         name: "liked",
-                        type: "tinyint",
+                        type: "bool",
                         isNullable: false,
                     },
                     {

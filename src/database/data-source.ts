@@ -1,6 +1,16 @@
 import * as dotenv from "dotenv";
 import { DataSource } from "typeorm";
-import {Event} from "./entities/Event"
+import { Event } from "./entities/Event"
+import { Attendee } from "./entities/Attendee";
+import { Event_date } from "./entities/Event_date";
+import { Organizer } from "./entities/Organizer";
+import { Category } from "./entities/Categories";
+import { Package } from "./entities/Package";
+import { Ticket } from "./entities/Ticket";
+import { User } from "./entities/User";
+import { Like } from "./entities/Like";
+import { Subscriber } from "./entities/Subscriber";
+import { Feature } from "./entities/Features";
 dotenv.config();
 
 export const AppDataSource = new DataSource({
@@ -12,7 +22,7 @@ export const AppDataSource = new DataSource({
    database: process.env.DB_DATABASE, //|| "quick_event",
    logging: true,
    synchronize: false,
-   entities: [Event],
+   entities: [Event, Attendee, Organizer, Category, Package, Ticket, User, Event_date, Like, Subscriber, Feature],
    subscribers: [],
    migrations: ["src/database/migrations/*.ts"],
 });
