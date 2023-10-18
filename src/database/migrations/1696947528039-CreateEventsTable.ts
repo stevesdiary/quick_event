@@ -105,7 +105,6 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
                         name: "event_email",
                         type: "varchar",
                         length: "25",
-                        isUnique: true,
                         isNullable: false
                     },
                     {

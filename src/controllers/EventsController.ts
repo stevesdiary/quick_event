@@ -2,11 +2,14 @@ import { Request, Response } from "express";
 import { AppDataSource } from "../database/data-source";
 import { Event } from "../database/entities/Event";
 import { ResponseUtl } from "../../utils/Response";
+import { Paginator } from "../database/Paginator";
 
 export class EventsController {
    async getEvents(req: Request, res: Response) {
-      const events = await AppDataSource.getRepository(Event).find();
-      return ResponseUtl.sendResponse(res, "Fethced events successfully", events, null)
+      const builder = await AppDataSource.getRepository(Event).createQueryBuilder()
+      .orderBy("event_id", "DESC");
+      const {records: events, paginationInfo} = await Paginator.paginate(builder, req)
+      return ResponseUtl.sendResponse(res, "Fetched events successfully", events, paginationInfo)
    }
 
    async getEvent(req: Request, res: Response) {

@@ -11,6 +11,7 @@ import { User } from "./entities/User";
 import { Like } from "./entities/Like";
 import { Subscriber } from "./entities/Subscriber";
 import { Feature } from "./entities/Features";
+import { query } from "express";
 dotenv.config();
 
 export const AppDataSource = new DataSource({
@@ -20,7 +21,7 @@ export const AppDataSource = new DataSource({
    username: process.env.DB_USERNAME || "root",
    password: process.env.DB_PASSWORD, // || "password",
    database: process.env.DB_DATABASE, //|| "quick_event",
-   logging: true,
+   logging: ["query"],
    synchronize: false,
    entities: [Event, Attendee, Organizer, Category, Package, Ticket, User, Event_date, Like, Subscriber, Feature],
    subscribers: [],
