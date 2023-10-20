@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn
+ } from "typeorm";
 
 @Entity("subscribers")
 
@@ -14,4 +15,10 @@ export class Subscriber {
 
    @Column({ nullable: false })
    subscribed: boolean;
+
+   @CreateDateColumn()
+   created_at: Date;
+
+   @UpdateDateColumn()
+   updated_at: Date;
 }

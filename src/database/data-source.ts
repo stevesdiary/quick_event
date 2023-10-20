@@ -22,7 +22,7 @@ export const AppDataSource = new DataSource({
    password: process.env.DB_PASSWORD, // || "password",
    database: process.env.DB_DATABASE, //|| "quick_event",
    logging: ["query"],
-   synchronize: false,
+   synchronize: true,
    entities: [Event, Attendee, Organizer, Category, Package, Ticket, User, Event_date, Like, Subscriber, Feature],
    subscribers: [],
    migrations: ["src/database/migrations/*.ts"],

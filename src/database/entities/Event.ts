@@ -1,11 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { EVENTS } from "../../constants/DBTable";
 
 @Entity(EVENTS)
 
 export class Event {
    @PrimaryGeneratedColumn("uuid")
-   event_id: string;
+   id: string;
 
    @Column({ nullable: false })
    category_id: string;
@@ -17,60 +17,65 @@ export class Event {
    merchant_id: string;
 
    @Column({ nullable: false })
-   event_name: string
+   event_name: string;
 
    @Column({ nullable: true})
-   description: string
+   description: string;
 
    @Column({ nullable: true })
-   video: string
+   video: string;
 
    @Column({ nullable: false })
-   start_date: Date
+   start_date: Date;
 
    @Column({ nullable: false })
-   end_date: Date
+   end_date: Date;
 
    @Column({ nullable: false })
-   event_type: string
+   event_type: string;
 
    @Column({ nullable: false })
-   venue: string
+   venue: string;
 
    @Column({ nullable: true })
-   instagram: string
+   instagram: string;
 
    @Column({ nullable: true})
-   facebook: string
+   facebook: string;
 
    @Column({ nullable: true })
-   twitter: string
+   twitter: string;
 
    @Column({ nullable: false })
-   event_email: string
+   event_email: string;
 
    @Column({ nullable: true })
-   portrait_banner: string
+   portrait_banner: string;
 
    @Column({ nullable: true })
-   landscape_banner: string
+   landscape_banner: string;
 
    @Column({ nullable: true })
-   sell: number
+   sell: number;
 
    @Column({ nullable: true })
-   payment_status: string
+   payment_status: string;
+
+   @Column({ nullable: true, type: 'varchar', })
+   service_charge: string;
 
    @Column({ nullable: true })
-   service_charge: number
+   service_fee: number;
 
    @Column({ nullable: true })
-   service_fee: number
+   multi_day: number;
 
    @Column({ nullable: true })
-   multi_day: number
+   status: number;
 
-   @Column({ nullable: true })
-   status: number
+   @CreateDateColumn()
+   created_at: Date
 
+   @UpdateDateColumn()
+   updated_at: Date
 }

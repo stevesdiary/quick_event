@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity("organizers")
 
@@ -23,4 +23,10 @@ export class Organizer {
 
    @Column({nullable: true})
    image: string;
+
+   @CreateDateColumn()
+   created_at: Date;
+
+   @UpdateDateColumn()
+   updated_at: Date;
 }

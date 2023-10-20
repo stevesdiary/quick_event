@@ -1,5 +1,6 @@
-import { IsAlphanumeric, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID, MaxLength, MinLength } from "class-validator";
+import { IsAlphanumeric, IsDateString, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID, MaxLength, MinLength } from "class-validator";
 import { Event  } from "../database/entities/Event";
+import { Transform, Type } from "class-transformer";
 export class CreateEventDTO {
    // @IsNotEmpty()
    // @IsString()
@@ -26,7 +27,7 @@ export class CreateEventDTO {
 
    @IsOptional()
    @IsString()
-   @MaxLength(100)
+   // @MaxLength(100)
    description: string;
    
    @IsNotEmpty()
@@ -35,12 +36,10 @@ export class CreateEventDTO {
    @MaxLength(150)
    video: string;
 
-   @IsNotEmpty()
-   @MaxLength(15)
+   @IsDateString()
    start_date: Date;
 
-   @IsNotEmpty()
-   @MaxLength(15)
+   @IsDateString()
    end_date: Date;
 
    @IsNotEmpty()
@@ -84,17 +83,29 @@ export class CreateEventDTO {
    @IsNotEmpty()
    payment_status: string;
 
-   @IsNotEmpty()
    @IsString()
-   service_charge: number;
+   service_charge: string;
 
    @IsNumber()
+   @Type(() => Number)
    service_fee: number;
 
    @IsNumber()
+   @Type(() => Number)
    multi_day: number;
 
-   @IsNotEmpty()
    @IsNumber()
+   @Type(() => Number)
    status: number;
+}
+
+export class UpdateEventDTO {
+   @IsNotEmpty()
+   event_name: string
+
+   @IsNotEmpty()
+   start_date: Date
+
+   @IsNotEmpty()
+   end_date: Date
 }

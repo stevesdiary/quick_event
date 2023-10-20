@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, Table } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn} from "typeorm";
 
 @Entity("tickets")
 
@@ -59,4 +59,10 @@ export class Ticket {
 
    @Column({ nullable: false })
    merchant_funded: boolean;
+
+   @CreateDateColumn()
+   created_at: Date;
+
+   @UpdateDateColumn()
+   updated_at: Date;
 }

@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity("attendees")
 
@@ -20,4 +20,9 @@ export class Attendee {
 
    @Column({ nullable: false, default: 1 })
    status: string;
+   @CreateDateColumn()
+   created_at: Date
+
+   @UpdateDateColumn()
+   updated_at: Date;
 }

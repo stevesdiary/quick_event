@@ -1,4 +1,4 @@
-import { Column, Entity, IntegerType, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, IntegerType, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity("features")
 
@@ -29,4 +29,10 @@ export class Feature {
 
    @Column({ nullable: false })
    expired_at: Date;
+
+   @CreateDateColumn()
+   created_at: Date
+
+   @UpdateDateColumn()
+   updated_at: Date
 }

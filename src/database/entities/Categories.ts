@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 
 @Entity("categories")
@@ -20,5 +20,11 @@ export class Category{
    status: number;
 
    @Column({ nullable: true })
-   image_logo: string
+   image_logo: string;
+
+   @CreateDateColumn()
+   created_at: Date
+
+   @UpdateDateColumn()
+   updated_at: Date
 }

@@ -4,13 +4,15 @@ import cors from "cors";
 import eventsRoute from "./routes/events"
 import { ResponseUtl } from "../utils/Response";
 import { EntityNotFoundError } from "typeorm";
-import { error } from "console";
 import { ErrorHandler } from "../utils/ErrorHandler";
+
 const app: Express = express();
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/", eventsRoute);
 
@@ -45,5 +47,5 @@ app.use("*", (req: Request, res: Response) => {
    })
 });
 
-// app.use(ErrorHandler.handleErrors);
+app.use(ErrorHandler.handleErrors);
 export default app;
