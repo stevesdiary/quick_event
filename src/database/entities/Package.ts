@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
-
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne } from "typeorm";
+import { Event } from "./Event";
 @Entity("packages")
 
 export class Package{
@@ -47,4 +47,7 @@ export class Package{
 
    @UpdateDateColumn()
    updated_at: Date;
+
+   @ManyToOne(() => Event, (EVENTS ) => EVENTS.package)
+   event: string[];
 }

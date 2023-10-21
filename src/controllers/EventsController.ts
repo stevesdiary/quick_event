@@ -7,6 +7,7 @@ import { CreateEventDTO, UpdateEventDTO } from "../dtos/CreateEventDTO";
 import { validate, validateOrReject } from "class-validator";
 import { UUID } from "typeorm/driver/mongodb/bson.typings";
 import { plainToClass } from "class-transformer";
+import { EVENTS } from "../constants/DBTable";
 
 export class EventsController {
    async getEvents(req: Request, res: Response): Promise<Response> {
@@ -62,7 +63,7 @@ export class EventsController {
          id: String()
       });
       repo.merge(updatEvent, eventData)
-      const eventUpdate = repo.update(event, eventData);
+      const eventUpdate = repo.update(EVENTS, eventData);
       await repo.save(event);
 
       return ResponseUtl.sendResponse<Event>(res, "Event updated successfully!", event, 200)

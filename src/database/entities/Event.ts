@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from "typeorm";
 import { EVENTS } from "../../constants/DBTable";
+import { Package } from "./Package";
 
 @Entity(EVENTS)
 
@@ -78,4 +79,9 @@ export class Event {
 
    @UpdateDateColumn()
    updated_at: Date
+
+   @OneToMany(() => Package, (packages) => packages.event_id)
+   package: Package[];
+
+   
 }

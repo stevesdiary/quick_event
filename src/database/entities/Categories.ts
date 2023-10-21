@@ -1,11 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Event } from "./Event";
 
 
 @Entity("categories")
 
 export class Category{
    @PrimaryGeneratedColumn("uuid")
-   category_id: string;
+   id: string;
 
    @Column({ nullable: false })
    name: string;
@@ -23,8 +24,11 @@ export class Category{
    image_logo: string;
 
    @CreateDateColumn()
-   created_at: Date
+   created_at: Date;
 
    @UpdateDateColumn()
-   updated_at: Date
+   updated_at: Date;
+
+   @OneToMany(() => Event, (events) => events.category_id)
+   event: Event;
 }
