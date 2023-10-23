@@ -1,4 +1,5 @@
-import { Column, Entity, IntegerType, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, IntegerType, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne } from "typeorm";
+import { Package } from "./Package";
 
 @Entity("features")
 
@@ -35,4 +36,7 @@ export class Feature {
 
    @UpdateDateColumn()
    updated_at: Date
+
+   @ManyToOne(() => Package, (packages) => packages.features)
+   package: Package
 }

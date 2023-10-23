@@ -35,6 +35,12 @@ export class FileUploader {
          limits: {fileSize: fileSize },
          fileFilter,
       }).array(fileFieldName);
+
+      const uploadedFile = `uploads/${folderName}`
+
       return upload;
-   } 
+
+   }
+
+   
 }

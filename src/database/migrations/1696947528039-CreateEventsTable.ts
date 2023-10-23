@@ -175,7 +175,7 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
                 ]
             }),
             true
-        )
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

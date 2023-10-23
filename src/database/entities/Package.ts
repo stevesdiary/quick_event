@@ -1,5 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, JoinTable, OneToMany } from "typeorm";
 import { Event } from "./Event";
+import { Feature } from "./Features";
+import { features } from "process";
+import { Ticket } from "./Ticket";
 @Entity("packages")
 
 export class Package{
@@ -49,5 +52,12 @@ export class Package{
    updated_at: Date;
 
    @ManyToOne(() => Event, (EVENTS ) => EVENTS.package)
-   event: string[];
+   event: string;
+
+   @OneToMany(() => Feature, (features) => features.package_id)
+   features: Feature;
+
+   @ManyToMany(() => Ticket)
+   @JoinTable()
+   tickets: Ticket[];
 }

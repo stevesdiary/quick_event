@@ -1,6 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany, ManyToMany, JoinTable, ManyToOne, OneToOne, JoinColumn } from "typeorm";
 import { EVENTS } from "../../constants/DBTable";
 import { Package } from "./Package";
+import { Ticket } from "./Ticket";
+import { Like } from "./Like";
+import { Event_date } from "./Event_date";
 
 @Entity(EVENTS)
 
@@ -83,5 +86,14 @@ export class Event {
    @OneToMany(() => Package, (packages) => packages.event_id)
    package: Package[];
 
-   
+   @OneToMany(() => Ticket, (tickets) => tickets.event_id)
+   ticket: Ticket[];
+
+   @ManyToMany(() => Like)
+   @JoinTable()
+   likes: Like[];
+
+   @OneToOne(() => Event_date)
+   @JoinColumn()
+   event_date: Event_date;
 }

@@ -101,11 +101,18 @@ export class CreateEventDTO {
 
 export class UpdateEventDTO {
    @IsNotEmpty()
-   event_name: string
+   @IsOptional()
+   event_name: string;
 
    @IsNotEmpty()
-   start_date: Date
+   @IsOptional()
+   start_date: Date;
 
    @IsNotEmpty()
-   end_date: Date
+   @IsOptional()
+   end_date: Date;
+}
+
+export class DeleteEventDTO {
+   
 }

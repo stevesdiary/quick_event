@@ -8,6 +8,7 @@ import { validate, validateOrReject } from "class-validator";
 import { UUID } from "typeorm/driver/mongodb/bson.typings";
 import { plainToClass } from "class-transformer";
 import { EVENTS } from "../constants/DBTable";
+import { DeleteResult } from "typeorm";
 
 export class EventsController {
    async getEvents(req: Request, res: Response): Promise<Response> {
@@ -26,7 +27,6 @@ export class EventsController {
 
    }
    async createEvent(req: Request, res: Response): Promise<Response> {
-      // eventData.portrait_banner = req.file?.filename;
       const dto = plainToClass(CreateEventDTO, req.body)
       const errors = await validate(dto);
       if (errors.length > 0) {
@@ -40,37 +40,41 @@ export class EventsController {
       return ResponseUtl.sendResponse(res, "New event created successfully!", event, 201)
 
    }
-   async updateEvent(req: Request, res: Response) {
-      
-      const { eventData } = req.body;
-      let  {event_name, description, event_type, start_date, end_date} = eventData
-      const event = await AppDataSource.getRepository(Event).findOneByOrFail({
-         event_name: String(),
-         description: String(),
-         event_type: String(),
-         // start_date: Date(),  
-      });
-      const dto = new UpdateEventDTO();
-      Object.assign(dto, eventData);
-      // dto.event_name = String
+   async updateEvent(req: Request, res: Response): Promise<Response> {
 
-      await validateOrReject(dto)
+
+      const dto = plainToClass(UpdateEventDTO, req.body);
       const errors = await validate(dto);
+      console.error("ERROR occoured Unable to update", errors)
+      if (errors.length > 0) {
+         return ResponseUtl.sendError(res, "Invalid data", 422, errors);
+      }
 
       const repo = AppDataSource.getRepository(Event);
-      repo.merge(event, eventData)
-      const updatEvent = await repo.findOneByOrFail({
-         id: String()
-      });
-      repo.merge(updatEvent, eventData)
-      const eventUpdate = repo.update(EVENTS, eventData);
-      await repo.save(event);
+      const { id } = req.params;
+      repo.merge(req.body)
+      const eventToUpdate = await repo.findOneByOrFail({id});
+      repo.merge(eventToUpdate, dto)
+      await repo.save(eventToUpdate);
 
-      return ResponseUtl.sendResponse<Event>(res, "Event updated successfully!", event, 200)
+      return ResponseUtl.sendResponse<Event>(res, "Event updated successfully!", eventToUpdate, 200)
    }
-   async deleteEvent(req: Request, res: Response) {
-      const eventDelete = await AppDataSource.getRepository(Event).delete({
-      });
-      // return ResponseUtl.sendResponse<Event>(res, "Event eleted successfully",eventDelete, null)
-   }
+
+   async deleteEvent(req: Request, res: Response): Promise<Response> {
+      const { id } = req.params;
+      try {
+         const eventToDelete = await AppDataSource.getRepository(Event).findOneBy({id});
+         // const deleteEvent: DeleteResult = await AppDataSource.getRepository(Event).delete({id})
+        if (!eventToDelete) {
+          return ResponseUtl.sendResponse(res, "Event not found", 404);
+        } 
+       
+        else {
+         await AppDataSource.getRepository(Event).remove(eventToDelete)
+            return ResponseUtl.sendResponse<Event>(res, "Event deleted successfully!", eventToDelete ,200);
+        }
+      } catch (error) {
+        return ResponseUtl.sendResponse(res, "Error deleting event", 500);
+      }
+    }
 }
