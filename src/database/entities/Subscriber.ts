@@ -5,7 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 
 export class Subscriber {
    @PrimaryGeneratedColumn("uuid")
-   subscriber_id: string;
+   id: string;
 
    @Column({ nullable: false })
    user_id: string;

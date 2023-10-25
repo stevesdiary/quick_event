@@ -2,10 +2,10 @@ import { IsAlphanumeric, IsDateString, IsEmail, IsNotEmpty, IsNumber, IsOptional
 import { Event  } from "../database/entities/Event";
 import { Transform, Type } from "class-transformer";
 export class CreateEventDTO {
-   // @IsNotEmpty()
+   @IsNotEmpty()
    // @IsString()
-   // @MaxLength(36)
-   // event_id: string
+   @MaxLength(36)
+   id: string
 
    @IsNotEmpty()
    // @MaxLength(36)
@@ -27,10 +27,8 @@ export class CreateEventDTO {
 
    @IsOptional()
    @IsString()
-   // @MaxLength(100)
    description: string;
    
-   @IsNotEmpty()
    @IsOptional()
    @IsString()
    @MaxLength(150)
@@ -50,15 +48,15 @@ export class CreateEventDTO {
    @MaxLength(100)
    venue: string;
 
-   @MaxLength(25)
+   @MaxLength(45)
    @IsOptional()
    instagram: string;
 
-   @MaxLength(25)
+   @MaxLength(45)
    @IsOptional()
    facebook: string;
 
-   @MaxLength(25)
+   @MaxLength(45)
    @IsOptional()
    twitter: string;
 
@@ -84,7 +82,7 @@ export class CreateEventDTO {
    payment_status: string;
 
    @IsString()
-   service_charge: string;
+   service_charge_from: string;
 
    @IsNumber()
    @Type(() => Number)
@@ -113,6 +111,6 @@ export class UpdateEventDTO {
    end_date: Date;
 }
 
-export class DeleteEventDTO {
-   
-}
+// export class DeleteEventDTO {
+
+// }

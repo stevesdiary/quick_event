@@ -8,7 +8,7 @@ export class CreateCategoriesTable1697113393551 implements MigrationInterface {
                 name: "categories",
                 columns: [
                     {
-                        name: "category_id",
+                        name: "id",
                         type: "varchar",
                         isPrimary: true,
                         isGenerated: true,

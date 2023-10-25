@@ -8,7 +8,7 @@ export class CreateSubscribersTable1697113920275 implements MigrationInterface {
                 name: "subscribers",
                 columns: [
                     {
-                        name: "subscriber_id",
+                        name: "id",
                         type: "varchar",
                         isPrimary: true,
                         isGenerated: true,

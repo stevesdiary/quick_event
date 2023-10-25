@@ -8,7 +8,7 @@ export class CreateEventDatesTable1697210695630 implements MigrationInterface {
                 name: "event_dates",
                 columns: [
                     {
-                        name: "event_date_id",
+                        name: "id",
                         type: "varchar",
                         isPrimary: true,
                         isGenerated: true,

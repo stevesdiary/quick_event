@@ -1,6 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, JoinTable} from "typeorm";
 import { Event } from "./Event";
-import { EVENTS } from "../../constants/DBTable";
 import { Package } from "./Package";
 import { Attendee } from "./Attendee";
 @Entity("tickets")
@@ -69,10 +68,10 @@ export class Ticket {
    @UpdateDateColumn()
    updated_at: Date;
 
-   @ManyToOne(() => Event, (EVENTS) => EVENTS.ticket )
+   @ManyToOne(() => Event, (events) => events.ticket )
    event: Event;
 
-   @ManyToOne(() => Attendee, (attendees) => attendees.attendee_id)
+   @ManyToOne(() => Attendee, (attendees) => attendees.id)
    attendee: Attendee;
 
    @ManyToMany(() => Package)

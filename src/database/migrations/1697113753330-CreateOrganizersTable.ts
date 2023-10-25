@@ -8,7 +8,7 @@ export class CreateOrganizersTable1697113753330 implements MigrationInterface {
                 name: "organizers",
                 columns: [
                     {
-                        name: "organizer_id",
+                        name: "id",
                         type: "varchar",
                         isPrimary: true,
                         isGenerated: true,

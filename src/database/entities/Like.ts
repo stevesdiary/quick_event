@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 
 export class Like {
    @PrimaryGeneratedColumn("uuid")
-   like_id: string;
+   id: string;
    
    @Column({ nullable: false })
    event_id: string;

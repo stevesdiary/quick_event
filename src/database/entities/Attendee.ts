@@ -4,8 +4,11 @@ import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 
 export class Attendee {
    @PrimaryGeneratedColumn("uuid")
-   attendee_id: string;
+   id: string;
 
+   @Column({ nullable: false })
+   user_id: string;
+   
    @Column({ nullable: false })
    first_name: string;
 

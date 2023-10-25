@@ -5,7 +5,7 @@ import { Package } from "./Package";
 
 export class Feature {
    @PrimaryGeneratedColumn("uuid")
-   feature_id: string;
+   id: string;
 
    @Column({ nullable: false })
    package_id: string;

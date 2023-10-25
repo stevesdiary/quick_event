@@ -8,7 +8,7 @@ export class CreateLikesTable1697113818348 implements MigrationInterface {
                 name: "likes",
                 columns: [
                     {
-                        name: "like_id",
+                        name: "id",
                         type: "varchar",
                         isPrimary: true,
                         isGenerated: true,

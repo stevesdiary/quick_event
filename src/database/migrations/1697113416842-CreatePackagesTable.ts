@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm"
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm"
 
 export class CreatePackagesTable1697113416842 implements MigrationInterface {
 
@@ -8,17 +8,12 @@ export class CreatePackagesTable1697113416842 implements MigrationInterface {
                 name: "packages",
                 columns: [
                     {
-                        name: "package_id",
+                        name: "id",
                         type: "varchar",
                         isPrimary: true,
                         isNullable: false,
                         isGenerated: true,
                         generationStrategy: "uuid",
-                    },
-                    {
-                        name: "features_id",
-                        type: "varchar(36)",
-                        isPrimary: true,
                     },
                     {
                         name: "event_id",
@@ -81,6 +76,16 @@ export class CreatePackagesTable1697113416842 implements MigrationInterface {
             }),
             true
         );
+
+        await queryRunner.createForeignKey(
+            "package",
+            new TableForeignKey({
+                columnNames: ["event_id"],
+                referencedColumnNames: ["id"],
+                referencedTableName: "events",
+                onDelete: "CASCADE",
+            })
+        )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

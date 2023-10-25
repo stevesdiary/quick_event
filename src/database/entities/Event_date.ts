@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 
 export class Event_date {
    @PrimaryGeneratedColumn("uuid")
-   event_date_id: string;
+   id: string;
 
    @Column({ nullable: false })
    event_id: string;

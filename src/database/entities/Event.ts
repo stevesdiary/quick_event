@@ -1,11 +1,10 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany, ManyToMany, JoinTable, ManyToOne, OneToOne, JoinColumn } from "typeorm";
-import { EVENTS } from "../../constants/DBTable";
 import { Package } from "./Package";
 import { Ticket } from "./Ticket";
 import { Like } from "./Like";
 import { Event_date } from "./Event_date";
 
-@Entity(EVENTS)
+@Entity("events")
 
 export class Event {
    @PrimaryGeneratedColumn("uuid")
@@ -66,7 +65,7 @@ export class Event {
    payment_status: string;
 
    @Column({ nullable: true, type: 'varchar', })
-   service_charge: string;
+   service_charge_from: string;
 
    @Column({ nullable: true })
    service_fee: number;

@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 
 export class User {
    @PrimaryGeneratedColumn("uuid")
-   organizer_id: string;
+   id: string;
 
    @Column({nullable: false})
    first_name: string;

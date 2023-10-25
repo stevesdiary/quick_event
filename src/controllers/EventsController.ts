@@ -4,11 +4,8 @@ import { Event } from "../database/entities/Event";
 import { ResponseUtl } from "../../utils/Response";
 import { Paginator } from "../database/Paginator";
 import { CreateEventDTO, UpdateEventDTO } from "../dtos/CreateEventDTO";
-import { validate, validateOrReject } from "class-validator";
-import { UUID } from "typeorm/driver/mongodb/bson.typings";
+import { validate } from "class-validator";
 import { plainToClass } from "class-transformer";
-import { EVENTS } from "../constants/DBTable";
-import { DeleteResult } from "typeorm";
 
 export class EventsController {
    async getEvents(req: Request, res: Response): Promise<Response> {

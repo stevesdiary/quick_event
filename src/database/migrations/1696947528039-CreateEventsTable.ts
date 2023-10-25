@@ -1,15 +1,14 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
-import { EVENTS } from "../../constants/DBTable"
 
 export class CreateEventsTable1696947528039 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: EVENTS,
+                name: "events",
                 columns: [
                     {
-                        name: "event_id",
+                        name: "id",
                         type: "varchar",
                         isPrimary: true,
                         isGenerated: true,
@@ -137,7 +136,7 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
                         isNullable: false,
                     },
                     {
-                        name: "service_charge",
+                        name: "service_charge_fom",
                         type: "varchar",
                         length: "20",
                         isNullable: false,
@@ -179,7 +178,7 @@ export class CreateEventsTable1696947528039 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable(EVENTS)
+        await queryRunner.dropTable("events")
     }
 
 }

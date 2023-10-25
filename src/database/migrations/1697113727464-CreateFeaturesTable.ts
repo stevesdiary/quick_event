@@ -8,14 +8,13 @@ export class CreateFeaturesTable1697113727464 implements MigrationInterface {
                 name: "features",
                 columns: [
                     {
-                        name: "features_id",
+                        name: "id",
                         type: "varchar",
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: "uuid",
                         isNullable: false,
                         // default: "uuid()"
-
                     },
                     {
                         name: "package_id",

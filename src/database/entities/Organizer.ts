@@ -1,11 +1,10 @@
 import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
 import { Event } from "./Event";
-import { EVENTS } from "../../constants/DBTable";
 @Entity("organizers")
 
 export class Organizer {
    @PrimaryGeneratedColumn("uuid")
-   organizer_id: string;
+   id: string;
 
    @Column({nullable: false})
    organizer_name: string;
@@ -31,6 +30,6 @@ export class Organizer {
    @UpdateDateColumn()
    updated_at: Date;
 
-   @OneToMany(() => Event, (EVENTS) => EVENTS.organizer_id)
+   @OneToMany(() => Event, (events) => events.organizer_id)
    event: Event[]
 }

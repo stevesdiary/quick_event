@@ -8,13 +8,18 @@ export class CreateAttendeesTable1697113808153 implements MigrationInterface {
                 name: "attendees",
                 columns: [
                     {
-                        name: "user_id",
+                        name: "id",
                         type: "varchar",
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: "uuid",
                         isNullable: false,
                         // default: "uuid()"
+                    },
+                    {
+                        name: "user_id",
+                        type: "varchar(36)",
+                        isNullable: false
                     },
                     {
                         name: "first_name",

@@ -8,7 +8,7 @@ export class CreateTicketsTable1697113836898 implements MigrationInterface {
                 name: "tickets",
                 columns: [
                     {
-                        name: "ticket_id",
+                        name: "id",
                         type: "varchar",
                         isPrimary: true,
                         isGenerated: true,

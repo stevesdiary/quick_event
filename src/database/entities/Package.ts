@@ -7,10 +7,10 @@ import { Ticket } from "./Ticket";
 
 export class Package{
    @PrimaryGeneratedColumn("uuid")
-   package_id: string;
+   id: string;
 
-   @Column({ nullable: false })
-   features_id: string;
+   // @Column({ nullable: false })
+   // features_id: string;
 
    @Column({ nullable: false })
    event_id: string;
@@ -51,7 +51,7 @@ export class Package{
    @UpdateDateColumn()
    updated_at: Date;
 
-   @ManyToOne(() => Event, (EVENTS ) => EVENTS.package)
+   @ManyToOne(() => Event, (events ) => events.package)
    event: string;
 
    @OneToMany(() => Feature, (features) => features.package_id)
