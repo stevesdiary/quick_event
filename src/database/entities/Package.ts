@@ -51,13 +51,12 @@ export class Package{
    @UpdateDateColumn()
    updated_at: Date;
 
-   @ManyToOne(() => Event, (events ) => events.package)
-   event: string;
+   // @ManyToOne(() => Event, (events ) => events.package)
+   // event: string;
 
-   @OneToMany(() => Feature, (features) => features.package_id)
+   @OneToMany(() => Feature, (features) => features.package_id, {onDelete: "CASCADE"})
    features: Feature;
 
-   @ManyToMany(() => Ticket)
-   @JoinTable()
+   @OneToMany(() => Ticket, (ticket) => ticket.package_id)
    tickets: Ticket[];
 }

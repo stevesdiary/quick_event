@@ -2,8 +2,7 @@ import express from "express";
 import { ErrorHandler } from "../../utils/ErrorHandler";
 import { EventsController } from "../controllers/EventsController";
 import { FileUploader } from "../middlewares/FileUploader";
-import { CategoryController } from "../controllers/CategoryController";
-import { EventService } from "../database/EventService";
+import { EventService } from "../services/EventService";
 const eventsController = new EventsController()
 const router = express.Router();
 
@@ -14,6 +13,5 @@ router.get("/:id", ErrorHandler.handleErrors(eventsController.getEvent));
 
 router.post("/event", FileUploader.uploader("files", "events", 2 * 1024 * 1024), ErrorHandler.handleErrors(eventsController.createEvent));
 router.put("/event/:id", ErrorHandler.handleErrors(eventsController.updateEvent));
-router.delete("/delete-event/:id", ErrorHandler.handleErrors(eventsController.deleteEvent))
-// router.post("/categories", ErrorHandler.handleErrors(EventService.createCategory));
+router.delete("/delete-event/:id", ErrorHandler.handleErrors(eventsController.deleteEvent));
 export default router;

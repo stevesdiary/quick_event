@@ -31,4 +31,5 @@ export class Category{
 
    @OneToMany(() => Event, (events) => events.category_id)
    event: Event;
+   name: string;
 }

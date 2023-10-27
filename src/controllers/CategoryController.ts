@@ -7,11 +7,13 @@ import { plainToClass } from "class-transformer";
 import { Category } from "../database/entities/Categories";
 
 export class CategoryController {
+
    async getCategories(req: Request, res: Response): Promise<Response> {
       const builder = AppDataSource.getRepository(Category).createQueryBuilder().orderBy("category_name", "ASC");
       const {records: categories, paginationInfo } = await Paginator.paginate(builder, req)
       return ResponseUtl.sendResponse(res, "Fetched categories successfully", categories, paginationInfo)
    }
+   
    async getCategory(req: Request, res: Response): Promise<Response> {
       const { id } = req.params;
       const category = await AppDataSource.getRepository(Category).findOneByOrFail({

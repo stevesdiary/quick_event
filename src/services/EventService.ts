@@ -1,24 +1,26 @@
-import { EntityManager } from "typeorm";
-import { Event } from "./entities/Event";
-import { Package } from "./entities/Package";
-import { Feature } from "./entities/Features";
-import { Event_date } from "./entities/Event_date";
+import { DataSource, EntityManager } from "typeorm";
+import { Event } from "../database/entities/Event";
+import { Package } from "../database/entities/Package";
+import { Feature } from "../database/entities/Features";
+import { Event_date } from "../database/entities/Event_date";
 import { ErrorHandler } from "../../utils/ErrorHandler";
 import { ResponseUtl } from "../../utils/Response";
-import { Category } from "./entities/Categories";
-import { Organizer } from "./entities/Organizer";
+import { Category } from "../database/entities/Categories";
+import { Organizer } from "../database/entities/Organizer";
 import { v4 as uuid } from "uuid";
 import { CreateEventDTO } from "../dtos/CreateEventDTO";
-import { AppDataSource } from "./data-source";
+import { AppDataSource } from "../database/data-source";
 
 
 export class EventService {
+   static createCategory: any;
    constructor(private entityManager: EntityManager) { }
-   async createCategory(req: Request, res: Response) {
-      const queryRunner = AppDataSource.createQueryRunner()
-      await queryRunner.connect()
-      
-   }
+   
+
+   static getCategories: string[];
+   
+
+   
    // async createEventWIthPackageAndFeatures(req: Request, res: Response) {
    //    const categoryId = await AppDataSource.getRepository(Category).findOne({
    //       category_name: String(req.body.categories.category_name)

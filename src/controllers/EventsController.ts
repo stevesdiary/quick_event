@@ -8,6 +8,7 @@ import { validate } from "class-validator";
 import { plainToClass } from "class-transformer";
 
 export class EventsController {
+
    async getEvents(req: Request, res: Response): Promise<Response> {
       const builder = AppDataSource.getRepository(Event).createQueryBuilder()
       .orderBy("createdAt", "DESC");
@@ -73,5 +74,9 @@ export class EventsController {
       } catch (error) {
         return ResponseUtl.sendResponse(res, "Error deleting event", 500);
       }
+    }
+
+    async customEvent(req: Request, res: Response) {
+      const Body = req.body as { name: string, image: string, description: string };
     }
 }
