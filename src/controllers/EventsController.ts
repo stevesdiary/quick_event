@@ -64,7 +64,7 @@ export class EventsController {
          const eventToDelete = await AppDataSource.getRepository(Event).findOneBy({id});
          // const deleteEvent: DeleteResult = await AppDataSource.getRepository(Event).delete({id})
         if (!eventToDelete) {
-          return ResponseUtl.sendResponse(res, "Event not found", 404);
+          return ResponseUtl.sendResponse(res, "Event not found", null, null);
         } 
        
         else {
