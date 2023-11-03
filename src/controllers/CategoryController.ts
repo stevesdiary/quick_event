@@ -5,43 +5,57 @@ import { ResponseUtl } from "../../utils/Response";
 import { Paginator } from "../database/Paginator";
 import { plainToClass } from "class-transformer";
 import { Category } from "../database/entities/Categories";
+import { CategoryService } from "../services/CategoryService";
+import { UUID } from "crypto";
 
-export default new class CategoryController {
+export class CategoryController {
+      async createCategory(req: Request, res: Response) {
+         const { category_name, banner, status, image_logo, description } = req.body;
+   
+         const category = new Category();
+         
+         category.category_name = category_name;
+         category.banner = banner;
+         category.description = description;
+         category.image_logo = image_logo;
+         category.status = status;
+   
+         await category.save();
+   
+         return res.status(201).json(category);
+      }
+      constructor(private readonly categoryService: CategoryService) {}
+   
+      async createCategor(req: Request, res: Response): Promise<Response> {
+      const category = req.body as Category;
+   
+      const newCategory = await this.categoryService.createCategory(category);
+   
+      return ResponseUtl.sendResponse(res, "New category created successfully!", newCategory, 201);
+      }
+   
+      async getCategories(req: Request, res: Response): Promise<Response> {
+      const categories = await this.categoryService.getCategories();
+   
+      return ResponseUtl.sendResponse(res, "Fetched categories successfully!", categories, null);
+      }
+   
+      async updateCategory(req: Request, res: Response): Promise<Response> {
+      const category = req.body as Category;
+   
+      const updatedCategory = await this.categoryService.updateCategory(category);
+   
+      return ResponseUtl.sendResponse(res, "Category updated successfully!", updatedCategory, 200);
+      }
+   
+      async deleteCategory(req: Request, res: Response): Promise<Response> {
+      const categoryId: string = (req.params.id);
+   
+      await this.categoryService.deleteCategory(categoryId);
+   
+      return ResponseUtl.sendResponse(res, "Category deleted successfully!", null, 204);
+      }
+   
 
-   async createCategory(req: Request, res: Response) {
-      const Body = req.body as {
-         id: string,
-         name: string
-      };
 
-      console.log("TEST");
-   }
-   async getCategories(req: Request, res: Response): Promise<Response> {
-      const builder = AppDataSource.getRepository(Category).createQueryBuilder().orderBy("category_name", "ASC");
-      const {records: categories, paginationInfo } = await Paginator.paginate(builder, req)
-      return ResponseUtl.sendResponse(res, "Fetched categories successfully", categories, paginationInfo)
-   }
-
-   async getCategory(req: Request, res: Response): Promise<Response> {
-      const { id } = req.params;
-      const category = await AppDataSource.getRepository(Category).findOneByOrFail({
-         id:String(id),
-      });
-      return ResponseUtl.sendResponse<Category>(res, "Fetched category successfully", category, null)
-   }
-   async deleteCategory(req: Request, res: Response): Promise<Response> {
-      const id = req.params.id;
-      const category = await AppDataSource.getRepository(Category).delete({
-         id:String(id),
-      });
-      return ResponseUtl.sendResponse<null>(res, "Category deleted", null, 200)
-   }
-
-   // async updateCategory(req: Request, res: Response): Promise<Response> {
-   //    const id = req.params.id;
-   //    const category = await AppDataSource.getRepository(Category).delete({
-   //       id: String(id),
-   //    });
-   //    return ResponseUtl.sendResponse<Category>(res, "Category updated", category, 200)
-   // }
 }

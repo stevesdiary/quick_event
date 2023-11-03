@@ -5,6 +5,9 @@ import { Event } from "./Event";
 @Entity("categories")
 
 export class Category{
+   save() {
+      throw new Error('Method not implemented.');
+   }
    @PrimaryGeneratedColumn("uuid")
    id: string;
 

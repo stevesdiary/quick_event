@@ -95,6 +95,12 @@ export class CreateEventDTO {
    @IsNumber()
    @Type(() => Number)
    status: number;
+
+   @IsNotEmpty()
+   created_at: Date;
+
+   @IsOptional()
+   updated_at: Date;
 }
 
 export class UpdateEventDTO {

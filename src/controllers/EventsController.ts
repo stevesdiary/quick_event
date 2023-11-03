@@ -6,8 +6,24 @@ import { Paginator } from "../database/Paginator";
 import { CreateEventDTO, UpdateEventDTO } from "../dtos/CreateEventDTO";
 import { validate } from "class-validator";
 import { plainToClass } from "class-transformer";
+import { EventService } from "../services/EventService";
 
 export class EventsController {
+   static getEvents(getEvents: any): import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>> {
+      throw new Error("Method not implemented.");
+   }
+   static getEvent(getEvent: any): import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>> {
+      throw new Error("Method not implemented.");
+   }
+   static createEvent(createEvent: any): import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>> {
+      throw new Error("Method not implemented.");
+   }
+   static updateEvent(updateEvent: any): import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>> {
+      throw new Error("Method not implemented.");
+   }
+   static deleteEvent(deleteEvent: any): import("express-serve-static-core").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>> {
+      throw new Error("Method not implemented.");
+   }
 
    async getEvents(req: Request, res: Response): Promise<Response> {
       const builder = AppDataSource.getRepository(Event).createQueryBuilder()
@@ -62,7 +78,7 @@ export class EventsController {
       const { id } = req.params;
       try {
          const eventToDelete = await AppDataSource.getRepository(Event).findOneBy({id});
-         // const deleteEvent: DeleteResult = await AppDataSource.getRepository(Event).delete({id})
+         const deleteEvent  = await AppDataSource.getRepository(Event).delete({id})
         if (!eventToDelete) {
           return ResponseUtl.sendResponse(res, "Event not found", null, null);
         } 

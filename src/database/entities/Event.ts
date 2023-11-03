@@ -82,7 +82,7 @@ export class Event {
    @UpdateDateColumn()
    updated_at: Date
 
-   @OneToMany(() => Package, (packages) => packages.event_id, {onDelete: "CASCADE"})
+   @OneToMany(() => Package, (packages) => packages.event_id, {eager: true})
    package: Package[];
 
    @OneToMany(() => Ticket, (tickets) => tickets.event_id)
